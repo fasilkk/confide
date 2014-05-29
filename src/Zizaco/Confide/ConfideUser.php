@@ -50,8 +50,8 @@ class ConfideUser extends Ardent implements UserInterface {
     public static $rules = array(
         'username' => 'required|alpha_dash|unique:users',
         'email' => 'required|email|unique:users',
-        'password' => 'required|min:4|confirmed',
-        'password_confirmation' => 'min:4',
+       
+     
     );
 
     /**
@@ -309,7 +309,11 @@ class ConfideUser extends Ardent implements UserInterface {
                 unset($rules['password_confirmation']);
             }
 
-            return parent::save( $rules, $customMessages, $options, $beforeSave, $afterSave );
+
+
+
+
+            return parent::save( $rules);
         }
     }
 
@@ -366,8 +370,8 @@ class ConfideUser extends Ardent implements UserInterface {
     protected $updateRules = array(
         'username' => 'required|alpha_dash',
         'email' => 'required|email',
-        'password' => 'min:4|confirmed',
-        'password_confirmation' => 'min:4',
+        'password' => 'min:4',
+    
     );
 
     /**
@@ -385,6 +389,7 @@ class ConfideUser extends Ardent implements UserInterface {
         if (empty($rules)) {
             $rules = $this->getUpdateRules();
         }
+
         return $this->save( $rules, $customMessages, $options, $beforeSave, $afterSave );
     }
 
